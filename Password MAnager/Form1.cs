@@ -22,5 +22,17 @@ namespace Password_MAnager
             MainForm mainForm = new MainForm();
             mainForm.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SignUpForm signUpForm = new SignUpForm();
+            signUpForm.Show();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            SignUpForm signUpForm = new SignUpForm();
+            signUpForm.Show();
+        }
     }
 }

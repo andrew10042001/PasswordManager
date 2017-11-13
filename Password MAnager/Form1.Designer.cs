@@ -88,6 +88,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Sign Up";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // checkBox1
             // 
@@ -107,6 +108,7 @@
             this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Forgot your password?";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // StartForm
             // 
