@@ -31,8 +31,8 @@ namespace Password_MAnager
 
         private void label3_Click(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new SignUpForm();
-            signUpForm.Show();
+            ForgotForm Form_ = new ForgotForm();
+            Form_.Show();
         }
     }
 }
