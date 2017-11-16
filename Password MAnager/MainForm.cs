@@ -14,8 +14,13 @@ namespace Password_MAnager
     public partial class MainForm : Form
     {
         EFcontext context;
-        public MainForm()
+        User user;
+        StartForm form;
+
+        public MainForm(StartForm form,User user)
         {
+            this.form = form;
+            this.user = user;
             InitializeComponent();
             context = new EFcontext();
             
@@ -23,6 +28,11 @@ namespace Password_MAnager
             {
                 treeView1.Nodes.Add("test");
             }
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }

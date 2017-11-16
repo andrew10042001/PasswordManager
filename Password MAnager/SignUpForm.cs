@@ -31,6 +31,14 @@ namespace Password_MAnager
                 return;
             }
             EFcontext EFContext = new EFcontext();
+            foreach (var item in EFContext.Users)
+            {
+                if(item.Login == textBox1.Text && item.Email == textBox2.Text)
+                {
+                    return;
+                }
+            }
+           
             EFContext.Users.Add(new User
             {
                 Login = textBox1.Text,

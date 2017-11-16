@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Password_MAnager.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +20,17 @@ namespace Password_MAnager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            EFcontext eFcontext = new EFcontext();
+            foreach (var item in eFcontext.Users)
+            {
+                if(item.Login == textBox1.Text && item.Password == textBox2.Text)
+                {
+                    MainForm mainForm = new MainForm(this,item);
+                    mainForm.Show();
+                    this.Hide();
+                }
+            }
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -31,6 +41,12 @@ namespace Password_MAnager
 
         private void label3_Click(object sender, EventArgs e)
         {
+            if(textBox1.Text != "")
+            {
+                ForgotForm Form__ = new ForgotForm(textBox1.Text);
+                Form__.Show();
+                return;
+            }
             ForgotForm Form_ = new ForgotForm();
             Form_.Show();
         }
