@@ -17,13 +17,13 @@ namespace Password_MAnager
         User user;
         StartForm form;
 
-        public MainForm(StartForm form,User user)
+        public MainForm(StartForm form, User user)
         {
             this.form = form;
             this.user = user;
             InitializeComponent();
             context = new EFcontext();
-            
+
             for (int i = 0; i < 100; i++)
             {
                 treeView1.Nodes.Add("test");
@@ -33,6 +33,21 @@ namespace Password_MAnager
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void toolStripLabel3_Click(object sender, EventArgs e)
+        {
+            if (toolStripTextBox1.Text == "")
+            {
+                return;
+            }
+            context.Sections.Add(
+                new Section
+                {
+                    Name = toolStripTextBox1.Text,
+                    UserId = user.Id
+                });
+            context.SaveChanges();
         }
     }
 }

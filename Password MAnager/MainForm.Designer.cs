@@ -42,6 +42,12 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +61,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(612, 410);
+            this.button1.Location = new System.Drawing.Point(651, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -64,7 +70,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(498, 410);
+            this.button3.Location = new System.Drawing.Point(517, 410);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -82,7 +88,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(612, 367);
+            this.button4.Location = new System.Drawing.Point(651, 367);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 37);
             this.button4.TabIndex = 5;
@@ -102,7 +108,7 @@
             this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(708, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(738, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -138,6 +144,7 @@
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Size = new System.Drawing.Size(71, 22);
             this.toolStripLabel3.Text = "Add Section";
+            this.toolStripLabel3.Click += new System.EventHandler(this.toolStripLabel3_Click);
             // 
             // toolStripTextBox1
             // 
@@ -149,11 +156,60 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(552, 32);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(174, 21);
+            this.comboBox1.TabIndex = 7;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(552, 78);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(174, 21);
+            this.comboBox2.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(367, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Section";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(367, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Create new service?";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(478, 86);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(42, 17);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "yes";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 445);
+            this.ClientSize = new System.Drawing.Size(738, 445);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
@@ -185,5 +241,11 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
