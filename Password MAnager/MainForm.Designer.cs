@@ -42,12 +42,28 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SectionComboBox1 = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ServiceComboBox2 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.CreateServicetextBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.PasswordtextBox2 = new System.Windows.Forms.TextBox();
+            this.ValueExtraField = new System.Windows.Forms.TextBox();
+            this.NameExtraField = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +83,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -94,6 +111,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Add field";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // toolStrip1
             // 
@@ -156,21 +174,21 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // comboBox1
+            // SectionComboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(552, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(174, 21);
-            this.comboBox1.TabIndex = 7;
+            this.SectionComboBox1.FormattingEnabled = true;
+            this.SectionComboBox1.Location = new System.Drawing.Point(552, 32);
+            this.SectionComboBox1.Name = "SectionComboBox1";
+            this.SectionComboBox1.Size = new System.Drawing.Size(174, 21);
+            this.SectionComboBox1.TabIndex = 7;
             // 
-            // comboBox2
+            // ServiceComboBox2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(552, 78);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(174, 21);
-            this.comboBox2.TabIndex = 8;
+            this.ServiceComboBox2.FormattingEnabled = true;
+            this.ServiceComboBox2.Location = new System.Drawing.Point(552, 84);
+            this.ServiceComboBox2.Name = "ServiceComboBox2";
+            this.ServiceComboBox2.Size = new System.Drawing.Size(174, 21);
+            this.ServiceComboBox2.TabIndex = 8;
             // 
             // label1
             // 
@@ -199,17 +217,172 @@
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "yes";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // CreateServicetextBox1
+            // 
+            this.CreateServicetextBox1.Location = new System.Drawing.Point(552, 84);
+            this.CreateServicetextBox1.Name = "CreateServicetextBox1";
+            this.CreateServicetextBox1.Size = new System.Drawing.Size(174, 20);
+            this.CreateServicetextBox1.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(367, 134);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Password";
+            // 
+            // PasswordtextBox2
+            // 
+            this.PasswordtextBox2.Location = new System.Drawing.Point(552, 127);
+            this.PasswordtextBox2.Name = "PasswordtextBox2";
+            this.PasswordtextBox2.Size = new System.Drawing.Size(174, 20);
+            this.PasswordtextBox2.TabIndex = 14;
+            // 
+            // ValueExtraField
+            // 
+            this.ValueExtraField.Location = new System.Drawing.Point(552, 171);
+            this.ValueExtraField.Name = "ValueExtraField";
+            this.ValueExtraField.Size = new System.Drawing.Size(174, 20);
+            this.ValueExtraField.TabIndex = 15;
+            this.ValueExtraField.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // NameExtraField
+            // 
+            this.NameExtraField.Location = new System.Drawing.Point(367, 171);
+            this.NameExtraField.Name = "NameExtraField";
+            this.NameExtraField.Size = new System.Drawing.Size(174, 20);
+            this.NameExtraField.TabIndex = 16;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(517, 367);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 37);
+            this.button5.TabIndex = 17;
+            this.button5.Text = "Cancel";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(367, 178);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "label4";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(549, 178);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "label5";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(549, 217);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "label6";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(549, 256);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "label7";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(549, 295);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "label8";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(549, 334);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "label9";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(367, 334);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "label10";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(367, 295);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "label11";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(367, 256);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "label12";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(367, 217);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(41, 13);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "label13";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 445);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.NameExtraField);
+            this.Controls.Add(this.ValueExtraField);
+            this.Controls.Add(this.PasswordtextBox2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.CreateServicetextBox1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.ServiceComboBox2);
+            this.Controls.Add(this.SectionComboBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
@@ -218,6 +391,8 @@
             this.Controls.Add(this.treeView1);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -241,11 +416,27 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox SectionComboBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox ServiceComboBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox CreateServicetextBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox PasswordtextBox2;
+        private System.Windows.Forms.TextBox ValueExtraField;
+        private System.Windows.Forms.TextBox NameExtraField;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
