@@ -181,6 +181,7 @@
             this.SectionComboBox1.Name = "SectionComboBox1";
             this.SectionComboBox1.Size = new System.Drawing.Size(174, 21);
             this.SectionComboBox1.TabIndex = 7;
+            this.SectionComboBox1.SelectedIndexChanged += new System.EventHandler(this.SectionComboBox1_SelectedIndexChanged);
             // 
             // ServiceComboBox2
             // 
@@ -207,6 +208,7 @@
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "Create new service?";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // checkBox1
             // 
@@ -225,6 +227,7 @@
             this.CreateServicetextBox1.Name = "CreateServicetextBox1";
             this.CreateServicetextBox1.Size = new System.Drawing.Size(174, 20);
             this.CreateServicetextBox1.TabIndex = 12;
+            this.CreateServicetextBox1.TextChanged += new System.EventHandler(this.CreateServicetextBox1_TextChanged);
             // 
             // label3
             // 
@@ -241,6 +244,7 @@
             this.PasswordtextBox2.Name = "PasswordtextBox2";
             this.PasswordtextBox2.Size = new System.Drawing.Size(174, 20);
             this.PasswordtextBox2.TabIndex = 14;
+            this.PasswordtextBox2.TextChanged += new System.EventHandler(this.PasswordtextBox2_TextChanged);
             // 
             // ValueExtraField
             // 
