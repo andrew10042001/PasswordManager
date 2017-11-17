@@ -190,6 +190,7 @@
             this.ServiceComboBox2.Name = "ServiceComboBox2";
             this.ServiceComboBox2.Size = new System.Drawing.Size(174, 21);
             this.ServiceComboBox2.TabIndex = 8;
+            this.ServiceComboBox2.SelectedIndexChanged += new System.EventHandler(this.ServiceComboBox2_SelectedIndexChanged);
             // 
             // label1
             // 

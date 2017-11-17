@@ -16,6 +16,7 @@ namespace Password_MAnager
         EFcontext context;
         User user;
         StartForm form;
+        Service service;
         List<ExtraField> ExtraFieldList;
 
         public MainForm(StartForm form, User user)
@@ -35,25 +36,37 @@ namespace Password_MAnager
                 treeView1.Nodes.Add("test");
             }
 
+            updateSectionComboBox();
+            updateServiceComboBox();
+
+            CreateServicetextBox1.Visible = false;
+        }
+
+        void updateSectionComboBox()
+        {
+            SectionComboBox1.Items.Clear();
             foreach (var item in context.Sections)
             {
-                SectionComboBox1.Items.Add(item.Name);
+                if (item.UserId == user.Id)
+                {
+                    SectionComboBox1.Items.Add(item.Name);
+                }
 
             }
             if (SectionComboBox1.Items.Count != 0)
             {
                 SectionComboBox1.SelectedItem = SectionComboBox1.Items[SectionComboBox1.Items.Count - 1];
             }
-            updateServiceComboBox();
-
-            CreateServicetextBox1.Visible = false;
         }
-
         void updateServiceComboBox()
         {
+            ServiceComboBox2.Items.Clear();
             foreach (var item in context.Services)
             {
-                ServiceComboBox2.Items.Add(item.Name);
+                if (item.section.UserId == user.Id)
+                {
+                    ServiceComboBox2.Items.Add(item.Name);
+                }
             }
             if (ServiceComboBox2.Items.Count != 0)
             {
@@ -71,6 +84,14 @@ namespace Password_MAnager
             {
                 return;
             }
+            foreach (var item in context.Sections)
+            {
+                if(item.Name == toolStripTextBox1.Text && item.UserId == user.Id)
+                {
+                    MessageBox.Show("This Section exist!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             context.Sections.Add(
                 new Section
                 {
@@ -78,6 +99,8 @@ namespace Password_MAnager
                     UserId = user.Id
                 });
             context.SaveChanges();
+
+            updateSectionComboBox();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -103,7 +126,7 @@ namespace Password_MAnager
 
         void AddVisibleTrue()
         {
-           
+
             label1.Visible = true;
             label2.Visible = true;
             label3.Visible = true;
@@ -133,7 +156,7 @@ namespace Password_MAnager
 
         void AddVisibleFalse()
         {
-           
+
             label1.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
@@ -160,7 +183,28 @@ namespace Password_MAnager
         }
         private void button1_Click(object sender, EventArgs e)
         {
-          
+            if (button1.Text == "Save")
+            {
+                Account account = new Account
+                {
+                    Password = PasswordtextBox2.Text,
+                    ServiceId = service.Id,
+                    time = DateTime.Now
+                };
+                context.Accounts.Add(account);
+                context.SaveChanges();
+                for (int i = 0; i < ExtraFieldList.Count; i++)
+                {
+                    context.ExtraFields.Add(new ExtraField
+                    {
+                        Name = ExtraFieldList[i].Name,
+                        Value = ExtraFieldList[i].Value,
+                        AccountId = account.Id
+                    });
+                    context.SaveChanges();
+                }
+                return;
+            }
             AddVisibleTrue();
             button1.Enabled = false;
         }
@@ -168,12 +212,12 @@ namespace Password_MAnager
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if(NameExtraField.Visible == false)
+            if (NameExtraField.Visible == false)
             {
                 NameExtraField.Visible = true;
                 ValueExtraField.Visible = true;
             }
-            if(NameExtraField.Text == "" || ValueExtraField.Text == "")
+            if (NameExtraField.Text == "" || ValueExtraField.Text == "")
             {
                 return;
             }
@@ -182,7 +226,7 @@ namespace Password_MAnager
                 Name = NameExtraField.Text,
                 Value = ValueExtraField.Text
             });
-           
+
             if (label4.Visible == false)
             {
                 label4.Text = NameExtraField.Text;
@@ -190,7 +234,7 @@ namespace Password_MAnager
                 label4.Visible = true;
                 label5.Visible = true;
             }
-            else if(label13.Visible == false)
+            else if (label13.Visible == false)
             {
                 label13.Text = NameExtraField.Text;
                 label6.Text = ValueExtraField.Text;
@@ -261,7 +305,7 @@ namespace Password_MAnager
             }
             else
             {
-             
+
                 button1.Text = "Add";
             }
 
@@ -277,25 +321,36 @@ namespace Password_MAnager
 
         private void label2_Click(object sender, EventArgs e)
         {
-            if(CreateServicetextBox1.Text =="")
+            if (CreateServicetextBox1.Text == "")
             {
                 return;
             }
+
             Section tmp = new Section();
             bool check = false;
             foreach (var item in context.Sections)
             {
-                if(item.Name == (SectionComboBox1.SelectedItem as string))
+                if (item.Name == (SectionComboBox1.SelectedItem as string))
                 {
                     tmp = item;
                     check = true;
                     break;
                 }
             }
-            if(!check)
+            if (!check)
             {
                 return;
             }
+
+            foreach (var item in context.Services)
+            {
+                if (item.Name == CreateServicetextBox1.Text && item.SectionId == tmp.Id)
+                {
+                    MessageBox.Show("This Service exist!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             context.Services.Add(new Service
             {
                 SectionId = tmp.Id,
@@ -309,8 +364,8 @@ namespace Password_MAnager
 
         private void PasswordtextBox2_TextChanged(object sender, EventArgs e)
         {
-            if(PasswordtextBox2.Text !="" &&
-                SectionComboBox1.SelectedItem!= null &&
+            if (PasswordtextBox2.Text != "" &&
+                SectionComboBox1.SelectedItem != null &&
                 ServiceComboBox2.SelectedItem != null)
             {
                 button1.Text = "Save";
@@ -319,7 +374,7 @@ namespace Password_MAnager
             }
             else
             {
-              
+
                 button1.Text = "Add";
             }
         }
@@ -336,8 +391,20 @@ namespace Password_MAnager
             }
             else
             {
-               
+
                 button1.Text = "Add";
+            }
+        }
+
+        private void ServiceComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (var item in context.Services)
+            {
+                if (item.Name == (ServiceComboBox2.SelectedItem as string))
+                {
+                    service = item;
+                    break;
+                }
             }
         }
     }
