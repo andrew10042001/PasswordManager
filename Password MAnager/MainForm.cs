@@ -31,11 +31,7 @@ namespace Password_MAnager
             context = new EFcontext();
             ExtraFieldList = new List<ExtraField>();
 
-            for (int i = 0; i < 100; i++)
-            {
-                treeView1.Nodes.Add("test");
-            }
-
+        
             updateSectionComboBox();
             updateServiceComboBox();
 
@@ -180,6 +176,19 @@ namespace Password_MAnager
             ValueExtraField.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
+            SectionComboBox1.Items.Clear();
+            ServiceComboBox2.Items.Clear();
+            PasswordtextBox2.Text = "";
+            label4.Text = "";
+            label5.Text = "";
+            label6.Text = "";
+            label7.Text = "";
+            label8.Text = "";
+            label9.Text = "";
+            label10.Text = "";
+            label11.Text = "";
+            label12.Text = "";
+            label13.Text = "";
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -203,6 +212,10 @@ namespace Password_MAnager
                     });
                     context.SaveChanges();
                 }
+               
+
+               
+                AddVisibleFalse();
                 return;
             }
             AddVisibleTrue();
@@ -277,7 +290,19 @@ namespace Password_MAnager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            foreach (var item in context.Sections)
+            {
+                if (item.UserId == user.Id)
+                {
+                    treeView1.Nodes.Add(item.Name);
+                }
+            }
+            if (treeView1.Nodes.Count == 0)
+                return;
 
+            
+
+           
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
