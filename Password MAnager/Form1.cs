@@ -28,6 +28,7 @@ namespace Password_MAnager
                     MainForm mainForm = new MainForm(this,item);
                     mainForm.Show();
                     this.Hide();
+                    break;
                 }
             }
            
