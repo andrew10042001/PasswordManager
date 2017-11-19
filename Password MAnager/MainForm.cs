@@ -120,7 +120,7 @@ namespace Password_MAnager
                         label16.Text = e.Node.Parent.Text;
                         label17.Text = e.Node.Text;
                         showViSibleTrue();
-                   
+
                         foreach (var item in context.ExtraFields)
                         {
                             if (item.account.Password == label17.Text && item.account.service.section.UserId == user.Id)
@@ -655,19 +655,19 @@ namespace Password_MAnager
             {
                 string text = "Service: " + label16.Text +
                     "\nPassword: " + label17.Text + "\n";
-                if(label4.Visible == true)
+                if (label4.Visible == true)
                 {
                     text += label4.Text + ": " + label5.Text + "\n";
-                    if(label13.Visible == true)
+                    if (label13.Visible == true)
                     {
                         text += label13.Text + ": " + label6.Text + "\n";
-                        if(label12.Visible == true)
+                        if (label12.Visible == true)
                         {
                             text += label12.Text + ": " + label7.Text + "\n";
-                            if(label11.Visible == true)
+                            if (label11.Visible == true)
                             {
                                 text += label11.Text + ": " + label8.Text + "\n";
-                                if(label10.Visible == true)
+                                if (label10.Visible == true)
                                 {
                                     text += label10.Text + ": " + label9.Text + "\n";
                                 }
@@ -676,7 +676,7 @@ namespace Password_MAnager
                     }
 
                 }
-                File.WriteAllText(folderBrowserDialog1.SelectedPath+"\\"+label16.Text+".txt",text);
+                File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + label16.Text + ".txt", text);
             };
 
         }
