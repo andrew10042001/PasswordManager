@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
@@ -70,13 +71,18 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView1
             // 
+            this.treeView1.BackColor = System.Drawing.Color.Bisque;
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(12, 26);
             this.treeView1.Name = "treeView1";
+            this.treeView1.SelectedImageIndex = 3;
             this.treeView1.Size = new System.Drawing.Size(349, 407);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -184,6 +190,7 @@
             // 
             // SectionComboBox1
             // 
+            this.SectionComboBox1.BackColor = System.Drawing.Color.Bisque;
             this.SectionComboBox1.FormattingEnabled = true;
             this.SectionComboBox1.Location = new System.Drawing.Point(552, 32);
             this.SectionComboBox1.Name = "SectionComboBox1";
@@ -224,16 +231,18 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox1.Location = new System.Drawing.Point(478, 86);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(42, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "yes";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // CreateServicetextBox1
             // 
+            this.CreateServicetextBox1.BackColor = System.Drawing.Color.Bisque;
             this.CreateServicetextBox1.Location = new System.Drawing.Point(552, 84);
             this.CreateServicetextBox1.Name = "CreateServicetextBox1";
             this.CreateServicetextBox1.Size = new System.Drawing.Size(174, 20);
@@ -252,6 +261,7 @@
             // 
             // PasswordtextBox2
             // 
+            this.PasswordtextBox2.BackColor = System.Drawing.Color.Bisque;
             this.PasswordtextBox2.Location = new System.Drawing.Point(552, 127);
             this.PasswordtextBox2.Name = "PasswordtextBox2";
             this.PasswordtextBox2.Size = new System.Drawing.Size(174, 20);
@@ -260,6 +270,7 @@
             // 
             // ValueExtraField
             // 
+            this.ValueExtraField.BackColor = System.Drawing.Color.Bisque;
             this.ValueExtraField.Location = new System.Drawing.Point(552, 171);
             this.ValueExtraField.Name = "ValueExtraField";
             this.ValueExtraField.Size = new System.Drawing.Size(174, 20);
@@ -268,6 +279,7 @@
             // 
             // NameExtraField
             // 
+            this.NameExtraField.BackColor = System.Drawing.Color.Bisque;
             this.NameExtraField.Location = new System.Drawing.Point(367, 171);
             this.NameExtraField.Name = "NameExtraField";
             this.NameExtraField.Size = new System.Drawing.Size(174, 20);
@@ -423,6 +435,15 @@
             this.label14.TabIndex = 32;
             this.label14.Text = "label14";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "if_articles-o_86091.png");
+            this.imageList1.Images.SetKeyName(1, "if_8_slide_slideshow_google_suits_service_2109123.png");
+            this.imageList1.Images.SetKeyName(2, "if_simpline_24_2305594.png");
+            this.imageList1.Images.SetKeyName(3, "if_MP3 Tag_20094.png");
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,7 +482,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.treeView1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Password Cloud";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
@@ -514,5 +535,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

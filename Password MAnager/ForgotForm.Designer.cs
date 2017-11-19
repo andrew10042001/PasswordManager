@@ -145,7 +145,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Name = "ForgotForm";
-            this.Text = "ForgotForm";
+            this.Text = "Password Cloud";
             this.Load += new System.EventHandler(this.ForgotForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

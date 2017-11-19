@@ -406,7 +406,11 @@ namespace Password_MAnager
                 {
                     if (item.section.Name == treeView1.Nodes[i].Text && item.section.UserId == user.Id)
                     {
-                        treeView1.Nodes[i].Nodes.Add(item.Name);
+                        TreeNode treeNode = new TreeNode(item.Name);
+                        treeNode.ImageIndex = 1;
+                        treeView1.Nodes[i].Nodes.Add(treeNode);
+                        //treeView1.Nodes[i].Nodes.Add(item.Name);
+                      
                     }
                 }
             }
@@ -418,7 +422,10 @@ namespace Password_MAnager
                     {
                         if (item.service.Name == treeView1.Nodes[i].Nodes[q].Text && item.service.section.UserId == user.Id)
                         {
-                            treeView1.Nodes[i].Nodes[q].Nodes.Add(item.Password);
+                            TreeNode treeNode = new TreeNode(item.Password);
+                            treeNode.ImageIndex = 2;
+                            treeView1.Nodes[i].Nodes[q].Nodes.Add(treeNode);
+                            //treeView1.Nodes[i].Nodes[q].Nodes.Add(item.Password);
                         }
                     }
                 }

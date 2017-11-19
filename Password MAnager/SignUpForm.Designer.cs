@@ -145,7 +145,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Name = "SignUpForm";
-            this.Text = "SignUpForm";
+            this.Text = "Password Cloud";
             this.ResumeLayout(false);
             this.PerformLayout();
 
