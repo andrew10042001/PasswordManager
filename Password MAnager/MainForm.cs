@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,11 +28,12 @@ namespace Password_MAnager
             this.user = user;
             InitializeComponent();
             AddVisibleFalse();
+            showVisibleFalse();
 
             context = new EFcontext();
             ExtraFieldList = new List<ExtraField>();
 
-        
+
             updateSectionComboBox();
             updateServiceComboBox();
 
@@ -75,6 +77,7 @@ namespace Password_MAnager
             label1.Visible = true;
             label2.Visible = true;
             label3.Visible = true;
+            label14.Visible = true;
             label15.Visible = true;
             label16.Visible = true;
             label17.Visible = true;
@@ -85,6 +88,7 @@ namespace Password_MAnager
             label1.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
+            label14.Visible = false;
             label15.Visible = false;
             label16.Visible = false;
             label17.Visible = false;
@@ -94,73 +98,74 @@ namespace Password_MAnager
         {
             AddVisibleFalse();
             string selectedNodeText = e.Node.Text;
-            if(e.Node.Parent != null)
+            if (e.Node.Parent != null)
             {
-                if(e.Node.Parent.Parent != null)
+                if (e.Node.Parent.Parent != null)
                 {
                     Account account = new Account();
                     bool check = false;
                     foreach (var item in context.Accounts)
                     {
-                        if(item.Password == e.Node.Text && item.service.section.UserId == user.Id)
+                        if (item.Password == e.Node.Text && item.service.section.UserId == user.Id)
                         {
                             check = true;
                             account = item;
                             break;
                         }
                     }
-                    if(check)
-                    {            
-                     
+                    if (check)
+                    {
+                        label14.Text = account.time.Day + ":" + account.time.Month + ":" + account.time.Year;
                         label15.Text = e.Node.Parent.Parent.Text;
                         label16.Text = e.Node.Parent.Text;
                         label17.Text = e.Node.Text;
                         showViSibleTrue();
-                        if (account.extrafields == null)
-                            return;
-                        foreach (var item in account.extrafields)
+                   
+                        foreach (var item in context.ExtraFields)
                         {
-                            if(label4.Visible == false)
+                            if (item.account.Password == label17.Text && item.account.service.section.UserId == user.Id)
                             {
-                                label4.Text = item.Name;
-                                label4.Visible = true;
-                                label5.Text = item.Value;
-                                label5.Visible = true;
-                            }
-                            else if(label13.Visible == false)
-                            {
-                                label13.Text = item.Name;
-                                label13.Visible = true;
-                                label6.Text = item.Value;
-                                label6.Visible = true;
-                            }
-                            else if (label12.Visible == false)
-                            {
-                                label12.Text = item.Name;
-                                label12.Visible = true;
-                                label7.Text = item.Value;
-                                label7.Visible = true;
-                            }
-                            else if (label11.Visible == false)
-                            {
-                                label11.Text = item.Name;
-                                label11.Visible = true;
-                                label8.Text = item.Value;
-                                label8.Visible = true;
-                            }
-                            else if (label10.Visible == false)
-                            {
-                                label10.Text = item.Name;
-                                label10.Visible = true;
-                                label9.Text = item.Value;
-                                label9.Visible = true;
+                                if (label4.Visible == false)
+                                {
+                                    label4.Text = item.Name;
+                                    label4.Visible = true;
+                                    label5.Text = item.Value;
+                                    label5.Visible = true;
+                                }
+                                else if (label13.Visible == false)
+                                {
+                                    label13.Text = item.Name;
+                                    label13.Visible = true;
+                                    label6.Text = item.Value;
+                                    label6.Visible = true;
+                                }
+                                else if (label12.Visible == false)
+                                {
+                                    label12.Text = item.Name;
+                                    label12.Visible = true;
+                                    label7.Text = item.Value;
+                                    label7.Visible = true;
+                                }
+                                else if (label11.Visible == false)
+                                {
+                                    label11.Text = item.Name;
+                                    label11.Visible = true;
+                                    label8.Text = item.Value;
+                                    label8.Visible = true;
+                                }
+                                else if (label10.Visible == false)
+                                {
+                                    label10.Text = item.Name;
+                                    label10.Visible = true;
+                                    label9.Text = item.Value;
+                                    label9.Visible = true;
+                                }
                             }
                         }
                     }
 
                 }
             }
-            MessageBox.Show(selectedNodeText);
         }
 
         private void toolStripLabel3_Click(object sender, EventArgs e)
@@ -171,7 +176,7 @@ namespace Password_MAnager
             }
             foreach (var item in context.Sections)
             {
-                if(item.Name == toolStripTextBox1.Text && item.UserId == user.Id)
+                if (item.Name == toolStripTextBox1.Text && item.UserId == user.Id)
                 {
                     MessageBox.Show("This Section exist!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -552,5 +557,130 @@ namespace Password_MAnager
                 }
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (treeView1.Nodes.Count == 0)
+                return;
+
+            if (treeView1.SelectedNode.Parent != null)
+            {
+                if (treeView1.SelectedNode.Parent.Parent != null)
+                {
+                    string pass = treeView1.SelectedNode.Text;
+                    Account account = new Account();
+                    foreach (var item in context.Accounts)
+                    {
+                        if (item.Password == pass && item.service.section.UserId == user.Id)
+                        {
+                            account = item;
+                            break;
+                        }
+                    }
+                    context.Accounts.Remove(account);
+                    context.SaveChanges();
+                    UpdateTreeView();
+                    return;
+                }
+            }
+            string name = treeView1.SelectedNode.Text;
+            if (treeView1.SelectedNode.Parent != null)
+            {
+
+                List<Account> list_ = new List<Account>();
+                foreach (var item in context.Accounts)
+                {
+                    if (item.service.Name == name && item.service.section.UserId == user.Id)
+                    {
+                        list_.Add(item);
+                    }
+                }
+                context.Accounts.RemoveRange(list_.ToArray());
+                context.SaveChanges();
+                Service service = new Service();
+                foreach (var item in context.Services)
+                {
+                    if (item.Name == name && item.section.UserId == user.Id)
+                    {
+                        service = item;
+                        break;
+                    }
+                }
+                context.Services.Remove(service);
+                context.SaveChanges();
+                UpdateTreeView();
+                return;
+            }
+            List<Account> list = new List<Account>();
+            foreach (var item in context.Accounts)
+            {
+                if (item.service.section.Name == name && item.service.section.UserId == user.Id)
+                {
+                    list.Add(item);
+                }
+            }
+            context.Accounts.RemoveRange(list.ToArray());
+            context.SaveChanges();
+            List<Service> listS = new List<Service>();
+            foreach (var item in context.Services)
+            {
+                if (item.section.Name == name && item.section.UserId == user.Id)
+                {
+                    listS.Add(item);
+                }
+            }
+            context.Services.RemoveRange(listS.ToArray());
+            context.SaveChanges();
+
+            Section section = new Section();
+            foreach (var item in context.Sections)
+            {
+                if (item.Name == name && item.UserId == user.Id)
+                {
+                    section = item;
+                    break;
+                }
+            }
+            context.Sections.Remove(section);
+            context.SaveChanges();
+            UpdateTreeView();
+            return;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (label17.Visible == false)
+                return;
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string text = "Service: " + label16.Text +
+                    "\nPassword: " + label17.Text + "\n";
+                if(label4.Visible == true)
+                {
+                    text += label4.Text + ": " + label5.Text + "\n";
+                    if(label13.Visible == true)
+                    {
+                        text += label13.Text + ": " + label6.Text + "\n";
+                        if(label12.Visible == true)
+                        {
+                            text += label12.Text + ": " + label7.Text + "\n";
+                            if(label11.Visible == true)
+                            {
+                                text += label11.Text + ": " + label8.Text + "\n";
+                                if(label10.Visible == true)
+                                {
+                                    text += label10.Text + ": " + label9.Text + "\n";
+                                }
+                            }
+                        }
+                    }
+
+                }
+                File.WriteAllText(folderBrowserDialog1.SelectedPath+"\\"+label16.Text+".txt",text);
+            };
+
+        }
     }
+
+
 }
