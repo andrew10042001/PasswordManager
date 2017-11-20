@@ -661,22 +661,22 @@ namespace Password_MAnager
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 string text = "Service: " + label16.Text +
-                    "\nPassword: " + label17.Text + "\n";
+                    "\r\nPassword: " + label17.Text + "\r\n";
                 if (label4.Visible == true)
                 {
-                    text += label4.Text + ": " + label5.Text + "\n";
+                    text += label4.Text + ": " + label5.Text + "\r\n";
                     if (label13.Visible == true)
                     {
-                        text += label13.Text + ": " + label6.Text + "\n";
+                        text += label13.Text + ": " + label6.Text + "\r\n";
                         if (label12.Visible == true)
                         {
-                            text += label12.Text + ": " + label7.Text + "\n";
+                            text += label12.Text + ": " + label7.Text + "\r\n";
                             if (label11.Visible == true)
                             {
-                                text += label11.Text + ": " + label8.Text + "\n";
+                                text += label11.Text + ": " + label8.Text + "\r\n";
                                 if (label10.Visible == true)
                                 {
-                                    text += label10.Text + ": " + label9.Text + "\n";
+                                    text += label10.Text + ": " + label9.Text + "\r\n";
                                 }
                             }
                         }
