@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -71,7 +72,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +86,15 @@
             this.treeView1.Size = new System.Drawing.Size(349, 407);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "if_articles-o_86091.png");
+            this.imageList1.Images.SetKeyName(1, "if_8_slide_slideshow_google_suits_service_2109123.png");
+            this.imageList1.Images.SetKeyName(2, "if_simpline_24_2305594.png");
+            this.imageList1.Images.SetKeyName(3, "if_MP3 Tag_20094.png");
             // 
             // button1
             // 
@@ -152,8 +161,13 @@
             // 
             // toolStripComboBox1
             // 
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "Section",
+            "Time",
+            "None"});
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
             // 
             // toolStripSeparator1
             // 
@@ -434,15 +448,6 @@
             this.label14.Size = new System.Drawing.Size(41, 13);
             this.label14.TabIndex = 32;
             this.label14.Text = "label14";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "if_articles-o_86091.png");
-            this.imageList1.Images.SetKeyName(1, "if_8_slide_slideshow_google_suits_service_2109123.png");
-            this.imageList1.Images.SetKeyName(2, "if_simpline_24_2305594.png");
-            this.imageList1.Images.SetKeyName(3, "if_MP3 Tag_20094.png");
             // 
             // MainForm
             // 
