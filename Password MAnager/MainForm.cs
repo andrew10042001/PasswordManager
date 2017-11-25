@@ -36,10 +36,12 @@ namespace Password_MAnager
 
             updateSectionComboBox();
             updateServiceComboBox();
+            UpdateTreeView();
 
             CreateServicetextBox1.Visible = false;
         }
 
+      
         void updateSectionComboBox()
         {
             SectionComboBox1.Items.Clear();
@@ -61,7 +63,7 @@ namespace Password_MAnager
             ServiceComboBox2.Items.Clear();
             foreach (var item in context.Services)
             {
-                if (item.section.UserId == user.Id)
+                if (item.section.UserId == user.Id && item.section.Name == SectionComboBox1.SelectedItem.ToString())
                 {
                     ServiceComboBox2.Items.Add(item.Name);
                 }
@@ -97,6 +99,8 @@ namespace Password_MAnager
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             AddVisibleFalse();
+            button1.Text = "Add";
+            button1.Enabled = true;
             string selectedNodeText = e.Node.Text;
             if (e.Node.Parent != null)
             {
@@ -551,6 +555,7 @@ namespace Password_MAnager
 
                 button1.Text = "Add";
             }
+            updateServiceComboBox();
         }
 
         private void ServiceComboBox2_SelectedIndexChanged(object sender, EventArgs e)
