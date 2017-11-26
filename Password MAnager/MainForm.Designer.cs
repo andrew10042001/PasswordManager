@@ -72,6 +72,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +148,9 @@
             this.toolStripSeparator2,
             this.toolStripLabel3,
             this.toolStripTextBox1,
-            this.toolStripSeparator3});
+            this.toolStripSeparator3,
+            this.toolStripLabel4,
+            this.toolStripSeparator4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(738, 25);
@@ -450,6 +454,18 @@
             this.label14.TabIndex = 32;
             this.label14.Text = "label14";
             // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Text = "Delete all";
+            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,5 +558,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

@@ -786,6 +786,44 @@ namespace Password_MAnager
 
             };
         }
+
+        private void toolStripLabel4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (treeView1.Nodes.Count == 0)
+                    return;
+                List<Section> SectionList = new List<Section>(context.Sections.Where(o => o.UserId == user.Id));
+                
+                for (int i = 0; i < SectionList.Count; i++)
+                {
+                    int id = SectionList[i].Id;
+                    List<Service> ServiceList = new List<Service>(context.Services.Where(o => o.SectionId == id));
+
+                    for (int j = 0; j < ServiceList.Count; j++)
+                    {
+                        int ServiceId = ServiceList[j].Id;
+                        List<Account> AccountList = new List<Account>(context.Accounts.Where(o => o.ServiceId == ServiceId));
+                        if (AccountList.Count == 0)
+                            return;
+                        for (int k = 0; k < AccountList.Count; k++)
+                        {
+                            int AccountId = AccountList[k].Id;
+                            List<ExtraField> ExtraFieldlist = new List<ExtraField>(context.ExtraFields.Where(o => o.AccountId == AccountId));
+                            context.ExtraFields.RemoveRange(ExtraFieldlist);
+                            context.SaveChanges();
+                        }
+                        context.Accounts.RemoveRange(AccountList);
+                        context.SaveChanges();
+                    }
+                    context.Services.RemoveRange(ServiceList);
+                    context.SaveChanges();
+                }
+                context.Sections.RemoveRange(SectionList);
+                context.SaveChanges();
+                UpdateTreeView();
+            }
+        }
     }
 
 
