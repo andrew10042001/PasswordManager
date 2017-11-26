@@ -45,6 +45,10 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SectionComboBox1 = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.ServiceComboBox2 = new System.Windows.Forms.ComboBox();
@@ -72,8 +76,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,7 +152,9 @@
             this.toolStripTextBox1,
             this.toolStripSeparator3,
             this.toolStripLabel4,
-            this.toolStripSeparator4});
+            this.toolStripSeparator4,
+            this.toolStripLabel5,
+            this.toolStripSeparator5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(738, 25);
@@ -206,6 +210,30 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Text = "Delete all";
+            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(27, 22);
+            this.toolStripLabel5.Text = "Edit";
+            this.toolStripLabel5.Click += new System.EventHandler(this.toolStripLabel5_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // SectionComboBox1
             // 
@@ -303,6 +331,7 @@
             this.NameExtraField.Name = "NameExtraField";
             this.NameExtraField.Size = new System.Drawing.Size(174, 20);
             this.NameExtraField.TabIndex = 16;
+            this.NameExtraField.TextChanged += new System.EventHandler(this.NameExtraField_TextChanged);
             // 
             // button5
             // 
@@ -323,6 +352,7 @@
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "label4";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -333,6 +363,7 @@
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 19;
             this.label5.Text = "label5";
+            this.label5.Click += new System.EventHandler(this.label4_Click);
             // 
             // label6
             // 
@@ -343,6 +374,7 @@
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "label6";
+            this.label6.Click += new System.EventHandler(this.label13_Click);
             // 
             // label7
             // 
@@ -353,6 +385,7 @@
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 21;
             this.label7.Text = "label7";
+            this.label7.Click += new System.EventHandler(this.label12_Click);
             // 
             // label8
             // 
@@ -363,6 +396,7 @@
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 22;
             this.label8.Text = "label8";
+            this.label8.Click += new System.EventHandler(this.label11_Click);
             // 
             // label9
             // 
@@ -373,6 +407,7 @@
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 23;
             this.label9.Text = "label9";
+            this.label9.Click += new System.EventHandler(this.label10_Click);
             // 
             // label10
             // 
@@ -383,6 +418,7 @@
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 27;
             this.label10.Text = "label10";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label11
             // 
@@ -393,6 +429,7 @@
             this.label11.Size = new System.Drawing.Size(41, 13);
             this.label11.TabIndex = 26;
             this.label11.Text = "label11";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label12
             // 
@@ -403,6 +440,7 @@
             this.label12.Size = new System.Drawing.Size(41, 13);
             this.label12.TabIndex = 25;
             this.label12.Text = "label12";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label13
             // 
@@ -413,6 +451,7 @@
             this.label13.Size = new System.Drawing.Size(41, 13);
             this.label13.TabIndex = 24;
             this.label13.Text = "label13";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label15
             // 
@@ -453,18 +492,6 @@
             this.label14.Size = new System.Drawing.Size(41, 13);
             this.label14.TabIndex = 32;
             this.label14.Text = "label14";
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
-            this.toolStripLabel4.Text = "Delete all";
-            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // MainForm
             // 
@@ -560,5 +587,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

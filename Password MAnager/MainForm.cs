@@ -20,18 +20,80 @@ namespace Password_MAnager
         Service service;
         List<ExtraField> ExtraFieldList;
 
+        bool[] txtcheck = { false, false, false, false, false };
+
+        void ShowLabels(int x)
+        {
+            if (txtcheck.Contains(true))
+            {
+                int index = Array.IndexOf(txtcheck, true);
+                if (index == 0 && x != 171)
+                {
+                    label4.Visible = true;
+                    label5.Visible = true;
+                }
+                else if (index == 1 && x != 210)
+                {
+                    label13.Visible = true;
+                    label6.Visible = true;
+                }
+                else if (index == 2 && x != 249)
+                {
+                    label12.Visible = true;
+                    label7.Visible = true;
+                }
+                else if (index == 3 && x != 288)
+                {
+                    label11.Visible = true;
+                    label8.Visible = true;
+                }
+                else if (index == 4 && x != 327)
+                {
+                    label10.Visible = true;
+                    label9.Visible = true;
+                }
+                else
+                {
+                    return;
+                }
+                txtcheck[index] = false;
+            }
+            if (x == 171)
+            {
+                txtcheck[0] = true;
+
+            }
+            else if (x == 210)
+            {
+                txtcheck[1] = true;
+            }
+            else if (x == 249)
+            {
+                txtcheck[2] = true;
+            }
+            if (x == 288)
+            {
+                txtcheck[3] = true;
+            }
+            if (x == 327)
+            {
+                txtcheck[4] = true;
+            }
+        }
         public MainForm(StartForm form, User user)
         {
 
 
             this.form = form;
             this.user = user;
+            context = new EFcontext();
+            ExtraFieldList = new List<ExtraField>();
+
             InitializeComponent();
             AddVisibleFalse();
             showVisibleFalse();
 
-            context = new EFcontext();
-            ExtraFieldList = new List<ExtraField>();
+
 
 
             updateSectionComboBox();
@@ -75,6 +137,7 @@ namespace Password_MAnager
 
         void showViSibleTrue()
         {
+            EditVisibleFalse();
             label1.Visible = true;
             label2.Visible = true;
             label3.Visible = true;
@@ -163,6 +226,7 @@ namespace Password_MAnager
         }
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            edit = false;
             AddVisibleFalse();
             button1.Text = "Add";
             button1.Enabled = true;
@@ -226,12 +290,41 @@ namespace Password_MAnager
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            if (!edit)
+                return;
+            if (ValueExtraField.Location.Y == 171)
+            {
+                label5.Text = ValueExtraField.Text;
+                ShowLabels(171);
 
+            }
+            else if (ValueExtraField.Location.Y == 210)
+            {
+                label6.Text = ValueExtraField.Text;
+                ShowLabels(210);
+            }
+            else if (ValueExtraField.Location.Y == 249)
+            {
+                label7.Text = ValueExtraField.Text;
+                ShowLabels(249);
+            }
+            else if (ValueExtraField.Location.Y == 288)
+            {
+                label8.Text = ValueExtraField.Text;
+                ShowLabels(288);
+            }
+            else if (ValueExtraField.Location.Y == 327)
+            {
+                label9.Text = ValueExtraField.Text;
+                ShowLabels(327);
+            }
         }
 
         void AddVisibleTrue()
         {
-
+            EditVisibleFalse();
+            ValueExtraField.Location = new Point(ValueExtraField.Location.X, 171);
+            NameExtraField.Location = new Point(NameExtraField.Location.X, 171);
             label1.Visible = true;
             label2.Visible = true;
             label3.Visible = true;
@@ -259,11 +352,20 @@ namespace Password_MAnager
             button1.Enabled = true;
             updateSectionComboBox();
             updateServiceComboBox();
+            PasswordtextBox2.Text = "";
+
+
+        }
+
+        void EditVisibleFalse()
+        {
+            toolStripLabel5.Text = "Edit";
         }
 
         void AddVisibleFalse()
         {
-
+            NameExtraField.Text = "";
+            ValueExtraField.Text = "";
             label1.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
@@ -303,6 +405,7 @@ namespace Password_MAnager
             label11.Text = "";
             label12.Text = "";
             label13.Text = "";
+            ExtraFieldList.Clear();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -333,6 +436,7 @@ namespace Password_MAnager
                 button5.Enabled = true;
                 AddVisibleFalse();
                 ExtraFieldList.Clear();
+
                 return;
             }
             showVisibleFalse();
@@ -485,6 +589,8 @@ namespace Password_MAnager
 
         private void button5_Click(object sender, EventArgs e)
         {
+            AddVisibleFalse();
+            toolStripLabel5.Text = "Edit";
             NameExtraField.Text = "";
             ValueExtraField.Text = "";
             NameExtraField.Visible = false;
@@ -794,7 +900,7 @@ namespace Password_MAnager
                 if (treeView1.Nodes.Count == 0)
                     return;
                 List<Section> SectionList = new List<Section>(context.Sections.Where(o => o.UserId == user.Id));
-                
+
                 for (int i = 0; i < SectionList.Count; i++)
                 {
                     int id = SectionList[i].Id;
@@ -824,7 +930,244 @@ namespace Password_MAnager
                 UpdateTreeView();
             }
         }
+        bool edit = false;
+        private void toolStripLabel5_Click(object sender, EventArgs e)
+        {
+
+            if ((sender as ToolStripLabel).Text == "Save")
+            {
+                List<Account> list = new List<Account>(context.Accounts.Where(o => o.Password == label17.Text && o.service.section.UserId == user.Id));
+                Account account = list[0];
+                List<ExtraField> eList = new List<ExtraField>();
+
+                if (label4.Visible == true)
+                {
+                    eList = new List<ExtraField>(context.ExtraFields.Where(o => o.AccountId == account.Id));
+                    context.ExtraFields.RemoveRange(eList);
+                    context.SaveChanges();
+
+
+                    ExtraField tmp_ = new ExtraField();
+                    tmp_.AccountId = account.Id;
+                    tmp_.Name = label4.Text;
+                    tmp_.Value = label5.Text;
+                    eList[0] = tmp_;
+
+                    if (label13.Visible == true)
+                    {
+                        ExtraField tmp = new ExtraField();
+                        tmp.AccountId = account.Id;
+                        tmp.Name = label13.Text;
+                        tmp.Value = label16.Text;
+                        eList[1] = tmp;
+                    }
+                    if (label12.Visible == true)
+                    {
+                        ExtraField tmp = new ExtraField();
+                        tmp.AccountId = account.Id;
+                        tmp.Name = label12.Text;
+                        tmp.Value = label7.Text;
+                        eList[2] = tmp;
+                    }
+                    if (label11.Visible == true)
+                    {
+                        ExtraField tmp = new ExtraField();
+                        tmp.AccountId = account.Id;
+                        tmp.Name = label11.Text;
+                        tmp.Value = label8.Text;
+                        eList[3] = tmp;
+                    }
+                    if (label10.Visible == true)
+                    {
+                        ExtraField tmp = new ExtraField();
+                        tmp.AccountId = account.Id;
+                        tmp.Name = label10.Text;
+                        tmp.Value = label9.Text;
+                        eList[4] = tmp;
+                    }
+                }
+
+                context.Accounts.Remove(account);
+                context.SaveChanges();
+                account.Password = PasswordtextBox2.Text;
+                account.time = DateTime.Now;
+
+                foreach (var item in context.Services)
+                {
+                    if (ServiceComboBox2.SelectedItem.ToString() == item.Name && item.section.Name == SectionComboBox1.SelectedItem.ToString())
+                    {
+                        account.ServiceId = item.Id;
+                        break;
+                    }
+                }
+                context.Accounts.Add(account);
+                context.SaveChanges();
+                if (eList.Count != 0)
+                {
+                    for (int i = 0; i < eList.Count; i++)
+                    {
+                        context.ExtraFields.Add(new ExtraField
+                        { Name = eList[i].Name,
+                            Value = eList[i].Value,
+                            AccountId = account.Id
+                        });
+                        context.SaveChanges();
+                    }
+                    //context.ExtraFields.AddRange(eList);
+                    //context.SaveChanges();
+                }
+                AddVisibleFalse();
+                showVisibleFalse();
+                edit = false;
+                UpdateTreeView();
+            }
+            if (label14.Visible == false)
+                return;
+            edit = true;
+            showVisibleFalse();
+            AddVisibleTrue();
+
+            (sender as ToolStripLabel).Text = "Save";
+
+            button4.Visible = false;
+            button3.Visible = false;
+            button2.Visible = false;
+            button1.Visible = false;
+            PasswordtextBox2.Text = label17.Text;
+            checkLabels();
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            if (!edit && label4.Visible)
+                return;
+            ValueExtraField.Location = new Point(ValueExtraField.Location.X, 171);
+            NameExtraField.Location = new Point(NameExtraField.Location.X, 171);
+            NameExtraField.Text = label4.Text;
+            ValueExtraField.Text = label5.Text;
+            NameExtraField.Visible = true;
+            ValueExtraField.Visible = true;
+            label4.Visible = false;
+            label5.Visible = false;
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            if (!edit && label13.Visible)
+                return;
+            ValueExtraField.Location = new Point(ValueExtraField.Location.X, 210);
+            NameExtraField.Location = new Point(NameExtraField.Location.X, 210);
+            NameExtraField.Text = label13.Text;
+            ValueExtraField.Text = label6.Text;
+            NameExtraField.Visible = true;
+            ValueExtraField.Visible = true;
+            label13.Visible = false;
+            label6.Visible = false;
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            if (!edit && label12.Visible)
+                return;
+            ValueExtraField.Location = new Point(ValueExtraField.Location.X, 249);
+            NameExtraField.Location = new Point(NameExtraField.Location.X, 249);
+            NameExtraField.Text = label12.Text;
+            ValueExtraField.Text = label7.Text;
+            NameExtraField.Visible = true;
+            ValueExtraField.Visible = true;
+            label12.Visible = false;
+            label7.Visible = false;
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            if (!edit && label11.Visible)
+                return;
+            ValueExtraField.Location = new Point(ValueExtraField.Location.X, 288);
+            NameExtraField.Location = new Point(NameExtraField.Location.X, 288);
+            NameExtraField.Text = label11.Text;
+            ValueExtraField.Text = label8.Text;
+            NameExtraField.Visible = true;
+            ValueExtraField.Visible = true;
+            label11.Visible = false;
+            label8.Visible = false;
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+            if (!edit && label10.Visible)
+                return;
+            ValueExtraField.Location = new Point(ValueExtraField.Location.X, 327);
+            NameExtraField.Location = new Point(NameExtraField.Location.X, 327);
+            NameExtraField.Text = label10.Text;
+            ValueExtraField.Text = label9.Text;
+            NameExtraField.Visible = true;
+            ValueExtraField.Visible = true;
+            label10.Visible = false;
+            label9.Visible = false;
+        }
+        void checkLabels()
+        {
+            if (label4.Text != "")
+            {
+                label4.Visible = true;
+                label5.Visible = true;
+            }
+            if (label13.Text != "")
+            {
+                label13.Visible = true;
+                label6.Visible = true;
+            }
+            if (label12.Text != "")
+            {
+                label12.Visible = true;
+                label7.Visible = true;
+            }
+            if (label11.Text != "")
+            {
+                label11.Visible = true;
+                label8.Visible = true;
+            }
+            if (label10.Text != "")
+            {
+                label10.Visible = true;
+                label9.Visible = true;
+            }
+        }
+
+        bool checckName = false;
+        private void NameExtraField_TextChanged(object sender, EventArgs e)
+        {
+            if (!edit)
+                return;
+            if (NameExtraField.Location.Y == 171)
+            {
+                label4.Text = NameExtraField.Text;
+                ShowLabels(171);
+            }
+            else if (NameExtraField.Location.Y == 210)
+            {
+                label13.Text = NameExtraField.Text;
+                ShowLabels(210);
+            }
+            else if (NameExtraField.Location.Y == 249)
+            {
+                label12.Text = NameExtraField.Text;
+                ShowLabels(249);
+            }
+            else if (NameExtraField.Location.Y == 288)
+            {
+                label11.Text = NameExtraField.Text;
+                ShowLabels(288);
+            }
+            else if (NameExtraField.Location.Y == 327)
+            {
+                label10.Text = NameExtraField.Text;
+                ShowLabels(327);
+            }
+
+
+        }
     }
-
-
 }
