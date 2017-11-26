@@ -160,7 +160,7 @@ namespace Password_MAnager
                     }
                 }
             }
-    }
+        }
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             AddVisibleFalse();
@@ -176,10 +176,6 @@ namespace Password_MAnager
                         ShowAccount(e.Node.Text);
                     }
                 }
-            }
-            else if (toolStripComboBox1.SelectedIndex == 1)
-            {
-
             }
             else
             {
@@ -432,7 +428,6 @@ namespace Password_MAnager
                             TreeNode treeNode = new TreeNode(item.Name);
                             treeNode.ImageIndex = 1;
                             treeView1.Nodes[i].Nodes.Add(treeNode);
-                            //treeView1.Nodes[i].Nodes.Add(item.Name);
 
                         }
                     }
@@ -448,7 +443,6 @@ namespace Password_MAnager
                                 TreeNode treeNode = new TreeNode(item.Password);
                                 treeNode.ImageIndex = 2;
                                 treeView1.Nodes[i].Nodes[q].Nodes.Add(treeNode);
-                                //treeView1.Nodes[i].Nodes[q].Nodes.Add(item.Password);
                             }
                         }
                     }
@@ -456,7 +450,15 @@ namespace Password_MAnager
             }
             else if (toolStripComboBox1.SelectedIndex == 1)
             {
-
+                List<Account> list = new List<Account>(context.Accounts.Where(o => o.service.section.UserId == user.Id));
+                list = list.OrderBy(o => o.time).ToList();
+                list.Reverse();
+                foreach (var item in list)
+                {
+                    TreeNode treeNode = new TreeNode(item.Password);
+                    treeNode.ImageIndex = 2;
+                    treeView1.Nodes.Add(treeNode);
+                }
             }
             else
             {
@@ -732,6 +734,57 @@ namespace Password_MAnager
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
             UpdateTreeView();
+        }
+
+        private void toolStripLabel2_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string path = folderBrowserDialog1.SelectedPath + "\\" + "Passwords";
+                DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                directoryInfo.Create();
+
+                List<Section> SectionList = new List<Section>(context.Sections.Where(o => o.UserId == user.Id));
+                if (SectionList.Count == 0)
+                    return;
+                foreach (var item in SectionList)
+                {
+                    Directory.CreateDirectory(path + "\\" + item.Name);
+                }
+                for (int i = 0; i < SectionList.Count; i++)
+                {
+                    int id = SectionList[i].Id;
+                    List<Service> ServiceList = new List<Service>(context.Services.Where(o => o.SectionId == id));
+
+                    foreach (var item in ServiceList)
+                    {
+                        Directory.CreateDirectory(path + "\\" + SectionList[i].Name + "\\" + item.Name);
+                    }
+                    for (int j = 0; j < ServiceList.Count; j++)
+                    {
+                        int ServiceId = ServiceList[j].Id;
+                        List<Account> AccountList = new List<Account>(context.Accounts.Where(o => o.ServiceId == ServiceId));
+                        if (AccountList.Count == 0)
+                            return;
+                        for (int k = 0; k < AccountList.Count; k++)
+                        {
+                            string text = "Section: " + SectionList[i].Name + "\r\n"
+                                + "Service: " + ServiceList[j].Name + "\r\n"
+                                + "Password: " + AccountList[k].Password + "\r\n"
+                            + "add time: " + (AccountList[k].time.ToShortDateString()) + "\r\n";
+                            int AccountId = AccountList[k].Id;
+                            List<ExtraField> ExtraFieldlist = new List<ExtraField>(context.ExtraFields.Where(o => o.AccountId == AccountId));
+                            foreach (var item in ExtraFieldlist)
+                            {
+                                text += item.Name + ": " + item.Value + "\r\n";
+                            }
+                            File.WriteAllText(path + "\\" + SectionList[i].Name + "\\" + ServiceList[j].Name + "\\" + AccountList[k].Password + ".txt", text);
+                        }
+                    }
+                }
+
+
+            };
         }
     }
 
