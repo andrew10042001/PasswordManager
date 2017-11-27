@@ -938,11 +938,13 @@ namespace Password_MAnager
             {
                 List<Account> list = new List<Account>(context.Accounts.Where(o => o.Password == label17.Text && o.service.section.UserId == user.Id));
                 Account account = list[0];
-                List<ExtraField> eList = new List<ExtraField>();
-
+                List<ExtraField> eList = new List<ExtraField>(context.ExtraFields.Where(o => o.AccountId == account.Id));
+                NameExtraField.Visible = false;
+                ValueExtraField.Visible = false;
+                checkLabels();
                 if (label4.Visible == true)
                 {
-                    eList = new List<ExtraField>(context.ExtraFields.Where(o => o.AccountId == account.Id));
+                  
                     context.ExtraFields.RemoveRange(eList);
                     context.SaveChanges();
 
