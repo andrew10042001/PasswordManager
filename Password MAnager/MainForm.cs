@@ -722,30 +722,43 @@ namespace Password_MAnager
             }
         }
 
+        void deletePart()
+        {
+            string pass = treeView1.SelectedNode.Text;
+            Account account = new Account();
+            foreach (var item in context.Accounts)
+            {
+                if (item.Password == pass && item.service.section.UserId == user.Id)
+                {
+                    account = item;
+                    break;
+                }
+            }
+            context.Accounts.Remove(account);
+            context.SaveChanges();
+            UpdateTreeView();
+            return;
+
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             if (treeView1.Nodes.Count == 0)
                 return;
-
-            if (treeView1.SelectedNode.Parent != null)
+            if (toolStripComboBox1.SelectedIndex == 0)
             {
-                if (treeView1.SelectedNode.Parent.Parent != null)
+                if (treeView1.SelectedNode.Parent != null)
                 {
-                    string pass = treeView1.SelectedNode.Text;
-                    Account account = new Account();
-                    foreach (var item in context.Accounts)
+                    if (treeView1.SelectedNode.Parent.Parent != null)
                     {
-                        if (item.Password == pass && item.service.section.UserId == user.Id)
-                        {
-                            account = item;
-                            break;
-                        }
+                        deletePart();
+                        return;
                     }
-                    context.Accounts.Remove(account);
-                    context.SaveChanges();
-                    UpdateTreeView();
-                    return;
                 }
+            }
+            else
+            {
+                deletePart();
+                return;
             }
             string name = treeView1.SelectedNode.Text;
             if (treeView1.SelectedNode.Parent != null)
