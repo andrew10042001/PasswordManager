@@ -579,6 +579,14 @@ namespace Password_MAnager
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (File.Exists("\\design.txt"))
+            {
+                toolStripComboBox2.SelectedItem = toolStripComboBox2.Items[1];
+            }
+            else
+            { 
+                toolStripComboBox2.SelectedItem = toolStripComboBox2.Items[0];
+            }
             UpdateTreeView();
         }
 
@@ -944,7 +952,7 @@ namespace Password_MAnager
                 checkLabels();
                 if (label4.Visible == true)
                 {
-                  
+
                     context.ExtraFields.RemoveRange(eList);
                     context.SaveChanges();
 
@@ -1009,7 +1017,8 @@ namespace Password_MAnager
                     for (int i = 0; i < eList.Count; i++)
                     {
                         context.ExtraFields.Add(new ExtraField
-                        { Name = eList[i].Name,
+                        {
+                            Name = eList[i].Name,
                             Value = eList[i].Value,
                             AccountId = account.Id
                         });
@@ -1170,6 +1179,67 @@ namespace Password_MAnager
             }
 
 
+        }
+
+        private void toolStripLabel7_Click(object sender, EventArgs e)
+        {
+            form.Show();
+            this.Hide();
+            if (File.Exists("\\pass.txt"))
+            {
+                File.Delete("\\pass.txt");
+            }
+
+        }
+
+        private void toolStripComboBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (toolStripComboBox2.SelectedIndex == 0)
+            { 
+                BackgroundImage = Image.FromFile(@"D:\Password Manager\PasswordManager\Password MAnager\images\2.jpg");
+                treeView1.BackColor = Color.LightGray;
+                foreach (var item in this.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).BackColor = Color.LightGray;
+                    }
+                    if (item is ComboBox)
+                    {
+                        (item as ComboBox).BackColor = Color.LightGray;
+                    }
+                }
+                if (File.Exists("\\design.txt"))
+                {
+                    File.Delete("\\design.txt");
+                }
+            }
+            else
+            {
+               
+                treeView1.BackColor = SystemColors.ActiveCaption;
+                BackgroundImage = Image.FromFile(@"D:\Password Manager\PasswordManager\Password MAnager\images\1.jpg");
+                foreach (var item in this.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).BackColor = SystemColors.ActiveCaption;
+                    }
+                    if (item is ComboBox)
+                    {
+                        (item as ComboBox).BackColor = SystemColors.ActiveCaption;
+                    }
+                }
+                if(!File.Exists("\\design.txt"))
+                {
+                    File.Create("\\design.txt");
+                }
+            }
         }
     }
 }

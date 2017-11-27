@@ -23,8 +23,12 @@ namespace Password_MAnager
                 string[] text = File.ReadAllLines("\\pass.txt");
                 textBox1.Text = text[0];
                 textBox2.Text = text[1];
-               
+                checkBox1.Checked = true;
+
             }
+          
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,6 +44,11 @@ namespace Password_MAnager
                     {
                         File.WriteAllText("\\pass.txt",item.Login+"\r\n"+item.Password);
                     }
+                    else if(File.Exists("\\pass.txt"))
+                    {
+                        File.Delete("\\pass.txt");
+                    }
+
                     mainForm.Show();
                     this.Hide();
 
@@ -65,6 +74,40 @@ namespace Password_MAnager
             }
             ForgotForm Form_ = new ForgotForm();
             Form_.Show();
+        }
+
+        private void StartForm_Load(object sender, EventArgs e)
+        {
+            if (File.Exists("\\design.txt"))
+            {
+                BackgroundImage = Image.FromFile(@"D:\Password Manager\PasswordManager\Password MAnager\images\1.jpg");
+                foreach (var item in this.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).BackColor = SystemColors.ActiveCaption;
+                    }
+                    if (item is ComboBox)
+                    {
+                        (item as ComboBox).BackColor = SystemColors.ActiveCaption;
+                    }
+                }
+            }
+            else
+            {
+                BackgroundImage = Image.FromFile(@"D:\Password Manager\PasswordManager\Password MAnager\images\2.jpg");
+                foreach (var item in this.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).BackColor = Color.LightGray;
+                    }
+                    if (item is ComboBox)
+                    {
+                        (item as ComboBox).BackColor = Color.LightGray;
+                    }
+                }
+            }
         }
     }
 }

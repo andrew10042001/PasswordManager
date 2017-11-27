@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,36 @@ namespace Password_MAnager
         public SignUpForm()
         {
             InitializeComponent();
+            if (File.Exists("\\design.txt"))
+            {
+                BackgroundImage = Image.FromFile(@"D:\Password Manager\PasswordManager\Password MAnager\images\1.jpg");
+                foreach (var item in this.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).BackColor = SystemColors.ActiveCaption;
+                    }
+                    if (item is ComboBox)
+                    {
+                        (item as ComboBox).BackColor = SystemColors.ActiveCaption;
+                    }
+                }
+            }
+            else
+            {
+                BackgroundImage = Image.FromFile(@"D:\Password Manager\PasswordManager\Password MAnager\images\2.jpg");
+                foreach (var item in this.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        (item as TextBox).BackColor = Color.LightGray;
+                    }
+                    if (item is ComboBox)
+                    {
+                        (item as ComboBox).BackColor = Color.LightGray;
+                    }
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

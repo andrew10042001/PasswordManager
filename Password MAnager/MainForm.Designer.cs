@@ -76,12 +76,16 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView1
             // 
-            this.treeView1.BackColor = System.Drawing.Color.Bisque;
+            this.treeView1.BackColor = System.Drawing.Color.LightGray;
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(12, 26);
@@ -154,10 +158,14 @@
             this.toolStripLabel4,
             this.toolStripSeparator4,
             this.toolStripLabel5,
-            this.toolStripSeparator5});
+            this.toolStripSeparator5,
+            this.toolStripLabel6,
+            this.toolStripComboBox2,
+            this.toolStripSeparator6,
+            this.toolStripLabel7});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(738, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(740, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -317,7 +325,7 @@
             // 
             // ValueExtraField
             // 
-            this.ValueExtraField.BackColor = System.Drawing.Color.Bisque;
+            this.ValueExtraField.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ValueExtraField.Location = new System.Drawing.Point(552, 171);
             this.ValueExtraField.Name = "ValueExtraField";
             this.ValueExtraField.Size = new System.Drawing.Size(174, 20);
@@ -493,12 +501,40 @@
             this.label14.TabIndex = 32;
             this.label14.Text = "label14";
             // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel6.Text = "Design";
+            // 
+            // toolStripComboBox2
+            // 
+            this.toolStripComboBox2.Items.AddRange(new object[] {
+            "Standart",
+            "Waves"});
+            this.toolStripComboBox2.Name = "toolStripComboBox2";
+            this.toolStripComboBox2.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBox2.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox2_SelectedIndexChanged);
+            this.toolStripComboBox2.Click += new System.EventHandler(this.toolStripComboBox2_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel7
+            // 
+            this.toolStripLabel7.Name = "toolStripLabel7";
+            this.toolStripLabel7.Size = new System.Drawing.Size(48, 15);
+            this.toolStripLabel7.Text = "Log out";
+            this.toolStripLabel7.Click += new System.EventHandler(this.toolStripLabel7_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(738, 445);
+            this.ClientSize = new System.Drawing.Size(740, 445);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -589,5 +625,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel6;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel7;
     }
 }
